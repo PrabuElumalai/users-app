@@ -11,6 +11,29 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const headers = { "headers": { "app-id": "6133558887895dca3fdc9a03" } };
+  
+  const headersExcel = {
+    dateOfBirth: "Date of Birth",
+    email: "Email",
+    firstName: "First Name",
+    gender: "Gender",
+    id: "Id",
+    lastName: "Last Name",
+    location: "Location",
+    city: "City",
+    country: "Country",
+    state: "State",
+    street: "Address",
+    timezone: "Time Zone",
+    phone: "Contact",
+    picture: "Image URL",
+    registerDate: "Created On",
+    title: "Title",
+    updatedDate: "Updated On",
+    countryFlag:"Error"
+  };
+
+  const fileTitle = 'All Users'; // or 'my-unique-title'
   // retrieve user data from dummyapi
   const retriveUsers = async () => {
     const response = await api.get("/data/v1/user/?limit=50", headers);
@@ -18,7 +41,6 @@ function App() {
   };
   const retriveUser = async (allUsers) => {
     for (var i = 0; i < allUsers.length; i++) {
-      console.log(allUsers[i].id);
       if (allUsers[i].id) {
         const response = await api.get("/data/v1/user/" + allUsers[i].id, headers);
         const { id, title, firstName, lastName, picture, gender, email, phone, registerDate, dateOfBirth } = response.data;
@@ -27,9 +49,6 @@ function App() {
 
       }
     }
-    // if (allUsers) setUsers(allUsers);
-    // console.log(allUsers);
-
     return allUsers;
   };
   const checkData = async (allUsers) => {
@@ -58,6 +77,7 @@ function App() {
       //if (allUsers) setUsers(allUsers);
       retriveUser(allUsers).then(function () {
         checkData(allUsers);
+        //exportCSVFile(headersExcel, allUsers, fileTitle);
       });
 
     };
@@ -69,13 +89,61 @@ function App() {
 
   }, [users]);
 
+
+
+  function convertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+}
+
+  function exportCSVFile(headers, items, fileTitle) {
+    if (headers) {
+      items.unshift(headers);
+    }
+
+    // Convert Object to JSON
+    var jsonObject = JSON.stringify(items);
+    var csv = this.convertToCSV(jsonObject);
+    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    if (navigator.msSaveBlob) { // IE 10+
+      navigator.msSaveBlob(blob, exportedFilenmae);
+    } else {
+      var link = document.createElement("a");
+      if (link.download !== undefined) { // feature detection
+        // Browsers that support HTML5 download attribute
+        var url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", exportedFilenmae);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  }
+  //exportCSVFile(headersExcel, users, fileTitle);
   return (
     <section>
       <div>
         <Header />
-         <UserList users={users} />
+        <UserList users={users} />
         <Footer />
-         </div>
+      </div>
     </section>
   );
 }

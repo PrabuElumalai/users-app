@@ -7,7 +7,6 @@ const Header=()=>{
   
 
           <a className="navbar-brand waves-effect" href="/" target="_blank">
-            {/* <img src="https://mdbootstrap.com/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="Logo"/> */}
             GIAM
           </a>
 

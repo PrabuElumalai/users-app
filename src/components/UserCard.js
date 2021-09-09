@@ -1,12 +1,12 @@
 import React from "react";
 
 const UserCard = (props) => {
-    const { id, title, firstName, lastName, picture, gender, email, dateOfBirth, phone, registerDate, location} = props.user;
+    const { id, title, firstName, lastName, picture, gender, email, dateOfBirth, phone, registerDate, location } = props.user;
     return (
         <div className="col-sm-12 col-md-6 mb-4">
             <div className="card testimonial-card">
                 <div className="row">
-                    <div className="col-4 avatar ml-2 white">
+                    <div className="col-4 avatar ml-4 mt-4 white">
                         <img src={picture} className="rounded-circle img-responsive mt-3" alt="woman avatar" style={{ maxWidth: "75px" }} />
 
                     </div>
@@ -49,7 +49,7 @@ const UserCard = (props) => {
                                 <label>State:</label>
                                 <label>{location.state}</label>
                             </div>
-                            <div className="row">
+                            <div className="row" style={{ color: location.countryFlag == true ? "black" : "red" }}>
                                 <label>Country:</label>
                                 <label>{location.country}</label>
                             </div>

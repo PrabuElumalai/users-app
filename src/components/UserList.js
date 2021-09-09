@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import UserCard from "./UserCard";
 
 const UserList = (props) => {
-    console.log(props.users);
+   // console.log(props.users);
     const renderUserList = props.users.map((user) => {
         return (
             <UserCard user={user} key={user.id} />

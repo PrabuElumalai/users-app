@@ -1,34 +1,67 @@
 import React from "react";
 
 const UserCard = (props) => {
-    const { id, title, firstName, lastName, picture } = props.user;
+    const { id, title, firstName, lastName, picture, gender, email, dateOfBirth, phone, registerDate, location} = props.user;
     return (
         <div className="col-sm-12 col-md-6 mb-4">
             <div className="card testimonial-card">
                 <div className="row">
-                <div className="col-4 avatar ml-2 white">
-                    <img src={picture} className="rounded-circle img-responsive mt-3" alt="woman avatar" style={{maxWidth:"75px"}}/>
+                    <div className="col-4 avatar ml-2 white">
+                        <img src={picture} className="rounded-circle img-responsive mt-3" alt="woman avatar" style={{ maxWidth: "75px" }} />
 
+                    </div>
+                    <div className="col-6">
+                        <h6 className="mt-2 text-strong">{title} {firstName} {lastName}</h6>
+                        <hr />
+                        <div className="row">
+                            <label>Gender:</label>
+                            <label>{gender}</label>
+                        </div>
+                        <div className="row">
+                            <label>Date of Birth:</label>
+                            <label>{dateOfBirth}</label>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-6">
-                    <h6 className="mt-2 text-strong">{title} {firstName} {lastName}</h6>
-                </div>
-                </div>
-                <div className="card-body">                    
-                   <button>View Details</button>
+                <div className="card-body">
+                    <div className="row">
+                        <div className="col-6">
+                            <div className="row">
+                                <label>Phone:</label>
+                                <label>{phone}</label>
+                            </div>
+                            <div className="row">
+                                <label>Email:</label>
+                                <label>{email}</label>
+                            </div>
+                        </div>
+                        <div className="col-6">
+                            <label>Address:</label>
+                            <div className="row">
+                                <label>Street:</label>
+                                <label>{location.street}</label>
+                            </div>
+                            <div className="row">
+                                <label>City:</label>
+                                <label>{location.city}</label>
+                            </div>
+                            <div className="row">
+                                <label>State:</label>
+                                <label>{location.state}</label>
+                            </div>
+                            <div className="row">
+                                <label>Country:</label>
+                                <label>{location.country}</label>
+                            </div>
+                            <div className="row">
+                                <label>TimeZone:</label>
+                                <label>{location.timezone}</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        // <div className="bg-white rounded shadow p-4 overflow-hidden flex md:flex-row flex-col">
-        //     <div className="flex-grow"><div className="truncate"><b>ID:</b> 60d0fe4f5311236168a109ca</div>
-        //     <img src="https://randomuser.me/api/portraits/women/58.jpg"/></div>
-        //     <div className="flex-grow"><div className="font-semibold text-lg truncate">ms. Sara Andersen</div>
-        //     <div className="truncate"><b>Gender:</b> female</div><div className="truncate"><b>Date of birth:</b> Apr 30 1996</div>
-        //     <div className="truncate"><b>Register date:</b> Jun 21 2021</div>
-        //     <br/><div className ="truncate"><b>Email: </b> sara.andersen @example.com</div>
-        //     <div className ="truncate"><b>Phone: </b> 92694011</div></div><div className="flex-grow"><b>Address</b><div className="truncate">
-        //         <b>State:</b> Nordjylland</div><div className="truncate"><b>Street:</b> 9614, SÃ¸ndermarksvej</div><div className="truncate">
-        //             <b>City:</b> Kongsvinger</div><div className="truncate"><b>Country:</b> Denmark</div><div className="truncate"><b>Timezone:</b> -9:00</div></div></div>
     );
 
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserCard = (props) => {
-    const { id, title, firstName, lastName, picture, gender, email, dateOfBirth, phone, registerDate, location } = props.user;
+    const { id, title, firstName, lastName, picture, gender, email, dateOfBirth, phone, registerDate, location, dateOfBirthStr } = props.user;
     return (
         <div className="col-sm-12 col-md-6 mb-4">
             <div className="card testimonial-card">
@@ -19,7 +19,7 @@ const UserCard = (props) => {
                         </div>
                         <div className="row">
                             <label>Date of Birth:</label>
-                            <label>{dateOfBirth}</label>
+                            <label>{dateOfBirthStr}</label>
                         </div>
                     </div>
                 </div>
